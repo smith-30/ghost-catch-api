@@ -1,6 +1,8 @@
 vendor/
 .idea/
 tmp/
+static/html/games/
+!static/html/games/.gitkeep
 
 # OS X Files
 .DS_Store
