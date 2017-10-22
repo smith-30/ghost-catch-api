@@ -3,6 +3,8 @@ vendor/
 tmp/
 static/html/games/
 !static/html/games/.gitkeep
+static/assets/img/sample/*
+!static/assets/img/sample/.gitkeep
 
 # OS X Files
 .DS_Store
