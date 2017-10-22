@@ -75,10 +75,10 @@ function calcScrollr() {
             dataval = dataval + cardht;
             temp = temp - cardht;
         }
-        
+
         totalht += cardht;
         i += cardht;
-        
+
         if (_hideatend) {
             var endpos = _startscrollat + (totalcount * $_e.eq(0).height());
             $_e.eq(count).attr("data-" + (endpos - 129), "display: block");
@@ -86,9 +86,9 @@ function calcScrollr() {
             $_e.eq(count).attr("data-" + (endpos - 11), "display: none");
             $_e.eq(count).attr("data-" + (endpos - 22), "opacity: 0");
         }
-        
+
         count++;
-        
+
     });
 
 }
@@ -213,6 +213,39 @@ $(window).load(function () {
 
     calcScrollr();
     s = skrollr.init();
-
-
 });
+
+class PlayerManager {
+    constructor() {
+        this.maxPlayerCount = 4;
+        this.minPlayerCount = 2;
+        this.playerCount = 2;
+    }
+
+    up() {
+        if(this.playerCount < this.maxPlayerCount) {
+            this.playerCount++;
+            $('#player-area').append('<i class="mdi-social-person medium player"></i>');
+            this.rewriteUrl()
+        }
+    }
+
+    down() {
+        if(this.playerCount > this.minPlayerCount) {
+            this.playerCount--;
+            $('.player').last().remove();
+            this.rewriteUrl()
+        }
+    }
+
+    rewriteUrl() {
+        let href = '/games?player=' + this.playerCount;
+        $('#play').attr('href', href);
+    }
+}
+
+const PM = new PlayerManager();
+
+window.onload = function () {
+    PM.rewriteUrl()
+};

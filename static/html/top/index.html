@@ -28,7 +28,7 @@
 <body class="cyan lighten-5">
 
 <div class="preloader cyan container-fluid row">
-    <div class="white-text text-darken-4 xpretext"><h4>&nbsp;&nbsp;hello !</h4>
+    <div class="white-text text-darken-4 xpretext"><h4><img src="/img/ghost_icon_24.png" title="icon">&nbsp;hello !</h4>
     </div>
     <div class="progress cyan lighten-2 xpreloading">
         <div class="indeterminate cyan darken-3"></div>
@@ -64,17 +64,20 @@
                                         <br>
                                         <h4>a <b>Simple</b> multi-player game</h4>
                                         <br>
+
+
                                         <h5 style="text-align: left;margin-left: 20%">
                                             1. Select number of players
                                         </h5>
                                         <div id="player-area">
-                                            <i class="mdi-social-person medium"></i>
-                                            <i class="mdi-social-person medium"></i>
+                                            <i class="mdi-social-person medium player"></i>
+                                            <i class="mdi-social-person medium player"></i>
                                         </div>
                                         <button
                                                 class="cyan darken-2 white-text text-darken-3 waves-effect waves-light btn"
                                                 id="player-plus"
                                                 style="margin-right: 20px"
+                                                onclick=PM.up()
                                         >
                                             <i class="mdi-social-person medium"></i>
                                             <i class="mdi-image-exposure-plus-1 medium"></i>
@@ -82,21 +85,28 @@
                                         <button
                                                 class="cyan darken-2 white-text text-darken-3 waves-effect waves-light btn"
                                                 id="player-minus"
+                                                onclick=PM.down()
                                         >
                                             <i class="mdi-social-person medium"></i>
                                             <i class="mdi-image-exposure-minus-1 medium"></i>
                                         </button>
                                         <br>
+
+
                                         <h5 style="text-align: left;margin-left: 20%">
                                             2. Rotate phone
                                         </h5>
                                         <img src="/img/struction_01.png" title="icon">
                                         <br>
                                         <br>
+
+
                                         <a target="_blank" href="/games" class="cyan darken-2 white-text text-darken-3 waves-effect waves-light btn" id="play">
                                             <i class="mdi-av-play-circle-outline"></i> Play
                                         </a>
                                         <br>
+
+
                                         <h4><b>How to play ?</b></h4>
                                         <i class="mdi-navigation-arrow-drop-down" style="font-size: 200px;"></i>
                                     </div>
@@ -115,7 +125,7 @@
 
                             <div class="scroll-1">
                                 <div class="container-fluid card cyan z-depth-2 waves-effect waves-light">
-                                    <div class="cover z-depth-1" style="background-image: url('/img/0.jpg');">
+                                    <div class="cover z-depth-1" style="background-image: url('/img/sample/sample_06.png');">
                                         <div class="filter cyan">
                                             <div class="cover-text cyan-text text-darken-4">
                                                 One
@@ -125,10 +135,6 @@
                                     <div class="card-content white-text">
                                         <div class="card-title">Step - 1 - Get an account on GitHub.</div>
                                         <b>Get an account on GitHub,</b> and verify your email. Remember that the username you choose will be the domain name of your website (unless you want to pay for a .com or something). Click on the button below to see detailed instructions regarding how you can accomplish this without getting your dick caught on a ceiling fan (or an oven, for that matter).
-                                    </div>
-                                    <div class="card-action cyan darken-2">
-                                        <button href="" class="cyan darken-1 white-text text-darken-3 waves-effect waves-light btn">View Post</button>
-                                        <button class="cyan darken-1 white-text text-darken-3 waves-effect waves-light btn" href='#'>Bookmark!</button>
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +146,7 @@
 
                             <div class="scroll-1">
                                 <div class="container-fluid card cyan z-depth-2 waves-effect waves-light">
-                                    <div class="cover z-depth-1" style="background-image: url('/img/0.jpg');">
+                                    <div class="cover z-depth-1" style="background-image: url('/img/sample/sample_01.png');">
                                         <div class="filter cyan">
                                             <div class="cover-text cyan-text text-darken-4">
                                                 Two
@@ -150,10 +156,6 @@
                                     <div class="card-content white-text">
                                         <div class="card-title">Step - 2 - Fork this repository.</div>
                                         Now that you have an account on GitHub, you can safely go<a href="https://github.com/naveenshaji"> here</a>and fork that repo. Just click on the tiny icon in top-right that says '<b>Fork</b>'. In case you have trouble finding said button, or if you want to know what forking or repository means and all that git-technical stuff, click on the button below.
-                                    </div>
-                                    <div class="card-action cyan darken-2">
-                                        <button href="" class="cyan darken-1 white-text text-darken-3 waves-effect waves-light btn">View Post</button>
-                                        <button class="cyan darken-1 white-text text-darken-3 waves-effect waves-light btn" href='#'>Bookmark!</button>
                                     </div>
                                 </div>
                             </div>
@@ -183,11 +185,9 @@
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-60711072-1', 'auto');
+    ga('create', '', 'auto');
     ga('send', 'pageview');
 </script>
 
-
 </body>
-
 </html>
