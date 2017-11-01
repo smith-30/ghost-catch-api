@@ -8,7 +8,7 @@ import (
 type (
 	Card struct {
 		Answer    int    `json:"answer"`
-		Base64Img string `json:"image"`
+		Base64Img string `json:"src"`
 		FileName  string `json:"-"`
 		FileExt   string `json:"-"`
 	}

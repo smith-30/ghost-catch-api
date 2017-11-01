@@ -51,6 +51,8 @@ func Event(c echo.Context) error {
 				}
 
 				if ch.Number == ans {
+					// Todo 成功メッセージを送ったらクライアント側から切断されるか確かめる
+
 					c.Logger().Info("success")
 					// Write
 					err := websocket.JSON.Send(ws, values.NewResult(true))
@@ -58,6 +60,8 @@ func Event(c echo.Context) error {
 						c.Logger().Error(err)
 					}
 				}
+
+				// Todo count wrong answer.
 			}
 		}
 

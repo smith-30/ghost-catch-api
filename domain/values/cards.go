@@ -12,6 +12,7 @@ func init() {
 }
 
 func makeCards() {
+	// Todo 画像パスで十分なはず.
 	for i, ans := range Answers {
 		//name := "static/assets/img/cards/card_" + strconv.Itoa(i) + ".jpeg"
 		name := "static/assets/img/sample/sample.jpeg"
