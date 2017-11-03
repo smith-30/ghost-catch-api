@@ -19,6 +19,8 @@ func main() {
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, "Test"},
 	}))
 
+	// Todo Auth jwt token when first access.
+
 	/**
 
 	  Static files

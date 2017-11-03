@@ -2,12 +2,16 @@ package values
 
 type (
 	Result struct {
-		Value bool `json:"val"`
+		Result bool `json:"result"`
+		Score  int  `json:"score"`
 	}
 )
 
-func NewResult(val bool) *Result {
-	return &Result{
-		Value: val,
-	}
+func NewResult() *Result {
+	return &Result{}
+}
+
+func (r *Result) SetSuccess(s int) {
+	r.Score = s
+	r.Result = true
 }
