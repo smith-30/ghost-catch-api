@@ -45,6 +45,10 @@ func Event(c echo.Context) error {
 					c.Logger().Error(err)
 					if ch.Failed > 10 {
 						c.Logger().Info("fail count is over. close WebSocket connection")
+						err := websocket.JSON.Send(ws, values.NewResult(false))
+						if err != nil {
+							c.Logger().Error(err)
+						}
 						return
 					}
 					ch.Failed += 1
@@ -53,15 +57,18 @@ func Event(c echo.Context) error {
 				if ch.Number == ans {
 					// Todo 成功メッセージを送ったらクライアント側から切断されるか確かめる
 
+					ch.Score++
+
 					c.Logger().Info("success")
 					// Write
 					err := websocket.JSON.Send(ws, values.NewResult(true))
 					if err != nil {
 						c.Logger().Error(err)
 					}
+				} else {
+					ch.Score++
+					c.Logger().Info("receive wrong answer: ", ch.Number)
 				}
-
-				// Todo count wrong answer.
 			}
 		}
 
