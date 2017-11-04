@@ -28,7 +28,7 @@ func main() {
 	*/
 	e.Static("/", "static/html/top")
 	e.Static("/img", "static/assets/img")
-	e.Static("/games", "static/html/games/dist")
+	e.Static("/games", "static/html/games")
 
 	/**
 
