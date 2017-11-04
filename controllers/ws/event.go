@@ -24,6 +24,10 @@ func Event(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest)
 	}
 
+	c.Logger().Info("answer is receive: ", ans)
+
+	r := values.NewResult()
+
 	websocket.Handler(func(ws *websocket.Conn) {
 		defer ws.Close()
 
@@ -45,7 +49,7 @@ func Event(c echo.Context) error {
 					c.Logger().Error(err)
 					if ch.Failed > 10 {
 						c.Logger().Info("fail count is over. close WebSocket connection")
-						err := websocket.JSON.Send(ws, values.NewResult(false))
+						err := websocket.JSON.Send(ws, r)
 						if err != nil {
 							c.Logger().Error(err)
 						}
@@ -58,15 +62,20 @@ func Event(c echo.Context) error {
 					// Todo 成功メッセージを送ったらクライアント側から切断されるか確かめる
 
 					ch.Score++
+					r.SetSuccess(ch.Score)
 
-					c.Logger().Info("success")
+					c.Logger().Info("answer is valid.")
 					// Write
-					err := websocket.JSON.Send(ws, values.NewResult(true))
+					err := websocket.JSON.Send(ws, r)
 					if err != nil {
 						c.Logger().Error(err)
 					}
 				} else {
 					ch.Score++
+					err := websocket.JSON.Send(ws, r)
+					if err != nil {
+						c.Logger().Error(err)
+					}
 					c.Logger().Info("receive wrong answer: ", ch.Number)
 				}
 			}

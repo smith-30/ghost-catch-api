@@ -3,7 +3,7 @@ package values
 import "strconv"
 
 var (
-	Answers = []int{1, 2, 3, 4, 5}
+	Answers = []int{2, 5, 4, 1, 1}
 	Cards   = map[int]*Card{}
 )
 
