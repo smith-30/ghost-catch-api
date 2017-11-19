@@ -2,8 +2,16 @@ package values
 
 import "strconv"
 
+const (
+	black = iota + 1
+	blue
+	grey
+	red
+	yellow
+)
+
 var (
-	Answers = []int{2, 5, 4, 1, 1}
+	Answers = []int{blue, yellow, red, black, black}
 	Cards   = map[int]*Card{}
 )
 
