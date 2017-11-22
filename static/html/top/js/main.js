@@ -216,6 +216,7 @@ $(window).load(function () {
 });
 
 const baseUrl = '/games?player=';
+const rotateMessage = 'Rotate phone ...';
 
 class PlayerManager {
     constructor() {
@@ -254,6 +255,7 @@ window.onload = function () {
 
     if (screen.width < screen.height) {
         $('#play').click(function(){
+            $('#rotate-alert').text(rotateMessage);
             return false;
         })
     }
@@ -261,9 +263,11 @@ window.onload = function () {
 
 $(window).on('orientationchange', () => {
     if(screen.orientation.angle === 90) {
+        $('#rotate-alert').text('');
         $('#play').unbind('click')
     } else {
         $('#play').click(function(){
+            $('#rotate-alert').text(rotateMessage);
             return false;
         })
     }
