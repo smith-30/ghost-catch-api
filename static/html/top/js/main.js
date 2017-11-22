@@ -215,11 +215,14 @@ $(window).load(function () {
     s = skrollr.init();
 });
 
+const baseUrl = '/games?player=';
+
 class PlayerManager {
     constructor() {
         this.maxPlayerCount = 4;
         this.minPlayerCount = 2;
         this.playerCount = 2;
+        this.url = baseUrl + this.playerCount;
     }
 
     up() {
@@ -239,8 +242,8 @@ class PlayerManager {
     }
 
     rewriteUrl() {
-        let href = '/games?player=' + this.playerCount;
-        $('#play').attr('href', href);
+        this.url = baseUrl + this.playerCount;
+        $('#play').attr('href', this.url);
     }
 }
 
@@ -248,4 +251,20 @@ const PM = new PlayerManager();
 
 window.onload = function () {
     PM.rewriteUrl()
+
+    if (screen.width < screen.height) {
+        $('#play').click(function(){
+            return false;
+        })
+    }
 };
+
+$(window).on('orientationchange', () => {
+    if(screen.orientation.angle === 90) {
+        $('#play').unbind('click')
+    } else {
+        $('#play').click(function(){
+            return false;
+        })
+    }
+});

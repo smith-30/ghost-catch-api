@@ -60,9 +60,8 @@ func Event(c echo.Context) error {
 
 				if ch.Number == ans {
 					// Todo 成功メッセージを送ったらクライアント側から切断されるか確かめる
-
-					ch.Score++
-					r.SetSuccess(ch.Score)
+					score := len(ch.Answers) + 1
+					r.SetSuccess(score)
 
 					c.Logger().Info("answer is valid.")
 					// Write
@@ -71,7 +70,8 @@ func Event(c echo.Context) error {
 						c.Logger().Error(err)
 					}
 				} else {
-					ch.Score++
+					ch.StockAnswer(ch.Number)
+					r.Score = len(ch.Answers)
 					err := websocket.JSON.Send(ws, r)
 					if err != nil {
 						c.Logger().Error(err)
