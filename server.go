@@ -4,6 +4,8 @@ import (
 	"project/ghost-catch-api/controllers/rest"
 	"project/ghost-catch-api/controllers/ws"
 
+	"os"
+
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
@@ -39,5 +41,10 @@ func main() {
 	g.GET("/ws/event", ws.Event)
 	g.GET("/card", rest.Card)
 
-	e.Logger.Fatal(e.Start(":9000"))
+	addr := os.Getenv("HTTP_PORT")
+	if addr == "" {
+		addr = "9090"
+	}
+
+	e.Logger.Fatal(e.Start(addr))
 }
