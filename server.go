@@ -41,9 +41,9 @@ func main() {
 	g.GET("/ws/event", ws.Event)
 	g.GET("/card", rest.Card)
 
-	addr := os.Getenv("HTTP_PORT")
+	addr := os.Getenv("BIND_HTTP")
 	if addr == "" {
-		addr = "9090"
+		addr = ":9090"
 	}
 
 	e.Logger.Fatal(e.Start(addr))
