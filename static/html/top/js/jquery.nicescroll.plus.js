@@ -1,5 +1,3 @@
----
----
 /* jquery.nicescroll.plus
 -- the addon for nicescroll
 -- version 1.0.0 BETA

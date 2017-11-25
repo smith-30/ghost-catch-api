@@ -1,5 +1,3 @@
----
----
 /*
 * Scrolline.js - Create an indication bar line of scroll position
 * Basic usage : $.scrolline();
