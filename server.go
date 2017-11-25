@@ -8,8 +8,14 @@ import (
 
 	"os"
 
+	"fmt"
+
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+)
+
+var (
+	revision = "unknown"
 )
 
 func main() {
@@ -47,6 +53,14 @@ func main() {
 	g := e.Group("/api/v1/games")
 	g.GET("/ws/event", ws.Event)
 	g.GET("/card", rest.Card)
+
+	fmt.Println(`
+|¯¯¯¯¯¯¯|° /¯¯,¯¯\  |¯¯¯|_|¯¯'|  /¯¯¯/\__) °|¯¯¯|_|¯¯¯| |\¯¯¯(\_/
+|¯¯|__|¯¯|' |\____ /|' |\______/| |\     \/¯¯¯) |___|¯|___| \/
+ ¯¯|__|¯¯   \|___ |/ ° \|_____|/  \|¯¯¯¯¯¯|  |___|¯|___| |¯¯¯¯¯¯¯|
+                                              ¯¯¯¯¯¯'      ¯¯¯¯¯¯¯'`)
+	fmt.Printf("\n\n revision at ")
+	fmt.Printf("\x1b[32m%s\x1b[0m\n\n", revision)
 
 	if env == "prod" {
 		e.Logger.Fatal(e.StartAutoTLS(":443"))
