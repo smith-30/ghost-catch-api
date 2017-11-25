@@ -48,14 +48,10 @@ func main() {
 	g.GET("/ws/event", ws.Event)
 	g.GET("/card", rest.Card)
 
-	addr := os.Getenv("BIND_HTTP")
-	if addr == "" {
-		addr = ":9090"
-	}
-
 	if env == "prod" {
 		e.Logger.Fatal(e.StartAutoTLS(":443"))
 	} else {
-		e.Logger.Fatal(e.Start(addr))
+		defaultAddr := ":9090"
+		e.Logger.Fatal(e.Start(defaultAddr))
 	}
 }
