@@ -4,6 +4,8 @@ import (
 	"project/ghost-catch-api/controllers/rest"
 	"project/ghost-catch-api/controllers/ws"
 
+	"golang.org/x/crypto/acme/autocert"
+
 	"os"
 
 	"github.com/labstack/echo"
@@ -12,6 +14,11 @@ import (
 
 func main() {
 	e := echo.New()
+
+	env := os.Getenv("ENV")
+	if env == "prod" {
+		e.AutoTLSManager.HostPolicy = autocert.HostWhitelist(os.Getenv("HOST"))
+	}
 	// enable logger level info
 	e.Debug = true
 	e.Use(middleware.Logger())
@@ -46,5 +53,9 @@ func main() {
 		addr = ":9090"
 	}
 
-	e.Logger.Fatal(e.Start(addr))
+	if env == "prod" {
+		e.Logger.Fatal(e.StartAutoTLS(":443"))
+	} else {
+		e.Logger.Fatal(e.Start(addr))
+	}
 }
