@@ -65,9 +65,13 @@ func main() {
 	fmt.Printf("\n\n revision at ")
 	fmt.Printf("\x1b[32m%s\x1b[0m\n\n", revision)
 
-	if env == "prod" {
+	switch env {
+	case "prod":
 		e.Logger.Fatal(e.StartAutoTLS(":443"))
-	} else {
+	case "dev":
+		defaultAddr := ":80"
+		e.Logger.Fatal(e.Start(defaultAddr))
+	default:
 		defaultAddr := ":9090"
 		e.Logger.Fatal(e.Start(defaultAddr))
 	}
