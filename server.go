@@ -24,6 +24,7 @@ func main() {
 	env := os.Getenv("ENV")
 	if env == "prod" {
 		e.AutoTLSManager.HostPolicy = autocert.HostWhitelist(os.Getenv("HOST"))
+		e.AutoTLSManager.Cache = autocert.DirCache("./_cache")
 	}
 	// enable logger level info
 	e.Debug = true
