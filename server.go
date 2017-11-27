@@ -29,6 +29,8 @@ func main() {
 	e.Debug = true
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
+	// prod かつ uaがpcの場合は404にする
+
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, "Test"},

@@ -5,14 +5,17 @@ import "strconv"
 const (
 	black = iota + 1
 	blue
-	grey
+	green
 	red
 	yellow
 )
 
 var (
-	Answers = []int{black}
-	Cards   = map[int]*Card{}
+	Answers = []int{
+		black, black, blue, blue, green,
+		green, red, red, yellow, yellow,
+	}
+	Cards = map[int]*Card{}
 )
 
 func init() {
@@ -23,9 +26,7 @@ func makeCards() {
 	// Todo 画像パスで十分なはず.
 	for i, ans := range Answers {
 		i += 1
-		//name := "static/assets/img/cards/card_" + strconv.Itoa(i) + ".jpeg"
-		name := "static/assets/img/sample/card_" + strconv.Itoa(i) + ".jpg"
-		//name := "static/assets/img/sample/sample_01.png"
+		name := "static/assets/img/cards/card_" + strconv.Itoa(i) + ".png"
 		Cards[i] = NewCard(ans, name)
 	}
 }
