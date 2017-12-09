@@ -13,7 +13,6 @@ import (
 )
 
 func Card(c echo.Context) error {
-
 	rand.Seed(time.Now().UnixNano())
 	cardKey := rand.Intn(len(values.Answers)) + 1 // not permit 0.
 	card, ok := values.Cards[cardKey]
@@ -25,15 +24,13 @@ func Card(c echo.Context) error {
 
 	file, err := os.Open(card.FileName)
 	if err != nil {
-		c.Logger().Error("%v", err)
-		return echo.NewHTTPError(http.StatusInternalServerError)
+		return echo.NewHTTPError(http.StatusInternalServerError, err)
 	}
 	defer file.Close()
 
 	fi, err := file.Stat() //FileInfo interface
 	if err != nil {
-		c.Logger().Error("%v", err)
-		return echo.NewHTTPError(http.StatusInternalServerError)
+		return echo.NewHTTPError(http.StatusInternalServerError, err)
 	}
 
 	data := make([]byte, fi.Size())
