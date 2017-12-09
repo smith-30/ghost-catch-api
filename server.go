@@ -10,8 +10,6 @@ import (
 
 	"fmt"
 
-	mw "project/ghost-catch-api/middleware"
-
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
@@ -27,6 +25,7 @@ func main() {
 	if env == "prod" {
 		e.AutoTLSManager.HostPolicy = autocert.HostWhitelist(os.Getenv("HOST"))
 		e.AutoTLSManager.Cache = autocert.DirCache("/var/www/certs")
+		e.Pre(middleware.HTTPSWWWRedirect())
 
 		// basic auth
 		e.Use(middleware.BasicAuth(func(username, password string, c echo.Context) (bool, error) {
@@ -36,8 +35,7 @@ func main() {
 			return false, nil
 		}))
 
-		// prod かつ uaがpcの場合は404にする
-		e.Use(mw.UserAgent())
+		// Todo: prod かつ uaがpcの場合は404にする
 	}
 
 	// enable logger level info
