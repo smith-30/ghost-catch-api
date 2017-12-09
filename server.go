@@ -33,7 +33,6 @@ func main() {
 	// prod かつ uaがpcの場合は404にする
 
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"*"},
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, "Test"},
 	}))
 
@@ -72,7 +71,7 @@ func main() {
 		defaultAddr := ":80"
 		e.Logger.Fatal(e.Start(defaultAddr))
 	default:
-		defaultAddr := ":9090"
+		defaultAddr := ":9000"
 		e.Logger.Fatal(e.Start(defaultAddr))
 	}
 }
