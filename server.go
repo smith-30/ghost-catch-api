@@ -27,13 +27,13 @@ func main() {
 		e.AutoTLSManager.Cache = autocert.DirCache("/var/www/certs")
 		e.Pre(middleware.HTTPSWWWRedirect())
 
-		// basic auth
-		e.Use(middleware.BasicAuth(func(username, password string, c echo.Context) (bool, error) {
-			if username == os.Getenv("BASIC_USER") && password == os.Getenv("BASIC_PASS") {
-				return true, nil
-			}
-			return false, nil
-		}))
+		// basic auth 一旦解除. UI側からパラメータ送る改修が必要
+		// e.Use(middleware.BasicAuth(func(username, password string, c echo.Context) (bool, error) {
+		// 	if username == os.Getenv("BASIC_USER") && password == os.Getenv("BASIC_PASS") {
+		// 		return true, nil
+		// 	}
+		// 	return false, nil
+		// }))
 
 		// Todo: prod かつ uaがpcの場合は404にする
 	}
