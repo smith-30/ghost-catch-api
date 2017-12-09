@@ -12,8 +12,11 @@ const (
 
 var (
 	Answers = []int{
-		black, black, blue, blue, green,
-		green, red, red, yellow, yellow,
+		black, blue, green, red, yellow,
+		black, blue, green, red, yellow,
+		black, blue, green, red, yellow,
+		black, blue, green, red, yellow,
+		black, blue, green, red, yellow,
 	}
 	Cards = map[int]*Card{}
 )
