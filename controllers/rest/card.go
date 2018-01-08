@@ -15,6 +15,7 @@ import (
 
 func Card(c echo.Context) error {
 	cardKey := genCardKey()
+	c.Logger().Info("cardKey: ", cardKey)
 	card, ok := values.Cards[cardKey]
 
 	if !ok {
@@ -44,7 +45,7 @@ func Card(c echo.Context) error {
 func genCardKey() int {
 	rand.Seed(time.Now().UnixNano())
 	cardKey := rand.Intn(len(values.Answers)) + 1 // not permit 0.
-	time.Sleep(10*time.Millisecond)
+	time.Sleep(10 * time.Millisecond)
 	_cardKey := rand.Intn(len(values.Answers))
-	return int(math.Abs(float64(cardKey+_cardKey - 25))) + 1
+	return int(math.Abs(float64(cardKey+_cardKey-25))) + 1
 }
