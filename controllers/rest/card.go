@@ -1,6 +1,7 @@
 package rest
 
 import (
+	"math"
 	"math/rand"
 	"net/http"
 	"os"
@@ -13,8 +14,7 @@ import (
 )
 
 func Card(c echo.Context) error {
-	rand.Seed(time.Now().UnixNano())
-	cardKey := rand.Intn(len(values.Answers)) + 1 // not permit 0.
+	cardKey := genCardKey()
 	card, ok := values.Cards[cardKey]
 
 	if !ok {
@@ -39,4 +39,12 @@ func Card(c echo.Context) error {
 	card.SetBase64Img(data)
 
 	return c.JSON(http.StatusOK, card)
+}
+
+func genCardKey() int {
+	rand.Seed(time.Now().UnixNano())
+	cardKey := rand.Intn(len(values.Answers)) + 1 // not permit 0.
+	time.Sleep(10*time.Millisecond)
+	_cardKey := rand.Intn(len(values.Answers))
+	return int(math.Abs(float64(cardKey+_cardKey - 25))) + 1
 }
